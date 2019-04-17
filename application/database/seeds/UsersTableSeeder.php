@@ -16,19 +16,22 @@ class UsersTableSeeder extends Seeder
         		'name' => 'Carlos Vargas',
         		'email' => 'cvargas@frontuari.net',
         		'password' => bcrypt('Car2244los*'),
-        		'role' => 'administrador'
+        		'role' => 'administrador',
+                'birthdate' => '1991-01-09'
         	],
             [
                 'name' => 'Alberto Vargas',
                 'email' => 'avargas@frontuari.net',
                 'password' => bcrypt('Alber2244to*'),
-                'role' => 'profesor'
+                'role' => 'profesor',
+                'birthdate' => '1993-08-09'
             ],
             [
                 'name' => 'Daniel Vargas',
                 'email' => 'dvargas@frontuari.net',
                 'password' => bcrypt('Dani2244el*'),
-                'role' => 'estudiante'
+                'role' => 'estudiante',
+                'birthdate' => '2000-01-01'
             ]
         ]);
     }

@@ -147,6 +147,22 @@ class UsersController extends Controller
     }
 
     public function profile(){
-        
+
+        return view('admin.users.profile');
+    }
+
+    public function change_password(Request $request, $id){
+
+        $request->validate([
+            'password' => 'required|confirmed'
+        ]);
+
+        $user = User::findorfail($id);
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+
+        flash("Contraseña Actualizada con Exito!!")->success();
+
+        return redirect()->route('home');
     }
 }

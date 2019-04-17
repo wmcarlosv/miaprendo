@@ -76,7 +76,23 @@ class AppServiceProvider extends ServiceProvider
                     break;
 
                     case 'profesor':
-
+                        $event->menu->add(
+                            [
+                                'text' => 'Dashboard',
+                                'route' => 'home',
+                                'icon' => 'dashboard'
+                            ],
+                            [
+                                'text' => 'Perfil',
+                                'route' => 'users.profile',
+                                'icon' => 'user-md'
+                            ],
+                            [
+                                'text' => 'Calendario',
+                                'route' => 'calendars.index',
+                                'icon' => 'calendar'
+                            ]
+                        );
                     break;
 
                     case 'estudiante':

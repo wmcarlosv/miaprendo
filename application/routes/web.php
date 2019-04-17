@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect("/login");
 });
 
 Auth::routes();
@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::resource('credits','CreditsController');
 	Route::resource('users','UsersController');
 
+	Route::put('/users/change-password','UsersController@change_password')->name('change_password');
+
 	Route::get('/profile','UsersController@profile')->name('users.profile');
 
 	Route::get('/teachers','TeachersController@index')->name('teachers.index');
@@ -33,6 +35,5 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::get('/students','StudentsController@index')->name('students.index');
 	Route::get('/students/new','StudentsController@create')->name('students.create');
-
 
 });
