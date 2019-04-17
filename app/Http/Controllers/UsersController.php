@@ -80,6 +80,10 @@ class UsersController extends Controller
         if($user->role == "profesor"){
             return view('admin.teachers.edit',['teacher' => $user]);
         }
+
+        if($user->role == "estudiante"){
+            return view('admin.students.edit',['students' => $user]);
+        }
     }
 
     /**
@@ -107,6 +111,11 @@ class UsersController extends Controller
             flash('Profesor Actualizado con Exito')->success();
             return redirect()->route('teachers.index');
         }
+
+        if($request->input('role') == 'estudiante'){
+            flash('Estudiante Actualizado con Exito')->success();
+            return redirect()->route('students.index');
+        }
     }
 
     /**
@@ -124,6 +133,11 @@ class UsersController extends Controller
         if($role == "profesor"){
             flash("Profesor Eliminado con Exito!!")->success();
             return redirect()->route("teachers.index");
+        }
+
+        if($role == "estudiante"){
+            flash("Estudiante Eliminado con Exito!!")->success();
+            return redirect()->route("students.index");
         }
     }
 
