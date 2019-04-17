@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin'], function(){
-	
+
 	Route::resource('lessons','LessonsController');
 	Route::resource('calendars','CalendarsController');
 	Route::resource('credits','CreditsController');
@@ -28,10 +28,11 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::get('/profile','UsersController@profile')->name('users.profile');
 
-	Route::get('/users/teachers','UsersController@teachers')->name('users.teachers');
-	Route::post('/users/new/teacher','UsersController@new_teacher')->name('users.new.teacher');
+	Route::get('/teachers','TeachersController@index')->name('teachers.index');
+	Route::get('/teachers/new','TeachersController@create')->name('teachers.create');
 
-	Route::get('/users/students','UsersController@students')->name('users.students');
-	Route::post('/users/new/student','UsersController@new_student')->name('users.new.student');
+	Route::get('/students','StudentsController@index')->name('students.index');
+	Route::get('/students/new','StudentsController@create')->name('students.create');
+
 
 });

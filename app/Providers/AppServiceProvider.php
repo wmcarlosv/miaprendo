@@ -48,12 +48,12 @@ class AppServiceProvider extends ServiceProvider
                         ],
                         [
                             'text' => 'Profesores',
-                            'route' => 'users.teachers',
+                            'route' => 'teachers.index',
                             'icon' => 'user'
                         ],
                         [
                             'text' => 'Estudiantes',
-                            'route' => 'users.students',
+                            'route' => 'students.index',
                             'icon' => 'users'
                         ],
                         [

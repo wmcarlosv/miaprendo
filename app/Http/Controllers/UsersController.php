@@ -14,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -25,17 +25,6 @@ class UsersController extends Controller
     public function create()
     {
         //
-    }
-
-    public function teachers(){
-
-        $teachers = User::where('role','=','profesor')->get();
-        
-        return view('admin.teachers.index',['teachers' => $teachers]);
-    }
-
-    public function students(){
-
     }
 
     /**
