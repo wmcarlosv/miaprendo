@@ -75,7 +75,11 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findorfail($id);
+
+        if($user->role == "profesor"){
+            return view('admin.teachers.edit',['teacher' => $user]);
+        }
     }
 
     /**
@@ -87,7 +91,22 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+
+        $user = User::findorfail($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->birthdate = date('Y-m-d',strtotime($request->input('birthdate')));
+        $user->role = $request->input('role');
+        $user->save();
+
+        if($request->input('role') == 'profesor'){
+            flash('Profesor Actualizado con Exito')->success();
+            return redirect()->route('teachers.index');
+        }
     }
 
     /**
