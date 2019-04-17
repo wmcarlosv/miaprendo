@@ -54,6 +54,11 @@ class UsersController extends Controller
             flash('Profesor Registrado con Exito')->success();
             return redirect()->route('teachers.index');
         }
+
+        if($request->input('role') == 'estudiante'){
+            flash('Estudiante Registrado con Exito')->success();
+            return redirect()->route('students.index');
+        }
     }
 
     /**
@@ -82,7 +87,7 @@ class UsersController extends Controller
         }
 
         if($user->role == "estudiante"){
-            return view('admin.students.edit',['students' => $user]);
+            return view('admin.students.edit',['student' => $user]);
         }
     }
 

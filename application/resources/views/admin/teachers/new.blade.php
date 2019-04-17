@@ -3,23 +3,21 @@
 @section('title', 'Nuevo Profesor')
 
 @section('content')
+    <!--Show Errors-->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <!--End Show Errors-->
     <div class="panel panel-default">
     	<div class="panel-heading">
     		<h2>Nuevo Profesor</h2>
     	</div>
-
-        <!--Show Errors-->
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <!--End Show Errors-->
-
     	<div class="panel-body">
     		{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'autocomplete' => 'off']) !!}
             <div class="form-group">
