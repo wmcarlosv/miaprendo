@@ -35,12 +35,25 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->birthdate = date('Y-m-d',strtotime($request->input('birthdate')));
         $user->password = bcrypt($request->input('password'));
         $user->role = $request->input('role');
         $user->save();
+
+        if($request->input('role') == 'profesor'){
+            flash('Profesor Registrado con Exito')->success();
+            return redirect()->route('teachers.index');
+        }
     }
 
     /**
@@ -85,7 +98,14 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findorfail($id);
+        $role = $user->role;
+        $user->delete();
+
+        if($role == "profesor"){
+            flash("Profesor Eliminado con Exito!!")->success();
+            return redirect()->route("teachers.index");
+        }
     }
 
     public function profile(){

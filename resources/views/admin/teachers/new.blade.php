@@ -7,6 +7,19 @@
     	<div class="panel-heading">
     		<h2>Nuevo Profesor</h2>
     	</div>
+
+        <!--Show Errors-->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <!--End Show Errors-->
+
     	<div class="panel-body">
     		{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'autocomplete' => 'off']) !!}
             <div class="form-group">
@@ -24,7 +37,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" readonly="readonly" name="password" id="password" placeholder="Contraseña">
                 <div class="input-group-btn">
-                  <button class="btn btn-info" type="button">
+                  <button class="btn btn-info" id="generate-password" type="button">
                     Generar
                   </button>
                 </div>
@@ -36,4 +49,25 @@
             {!! Form::close() !!}
     	</div>
     </div>
+@stop
+@section('js')
+<script type="text/javascript">
+    function randomPassword(length) {
+        var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
+        var pass = "";
+        for (var x = 0; x < length; x++) {
+            var i = Math.floor(Math.random() * chars.length);
+            pass += chars.charAt(i);
+        }
+        return pass;
+    }
+
+    $(document).ready(function(){
+        $("#generate-password").click(function(){
+            var pass = randomPassword(8);
+
+            $("#password").val(pass);
+        });
+    });
+</script>
 @stop
