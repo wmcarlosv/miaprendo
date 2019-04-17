@@ -35,7 +35,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->role = $request->input('role');
+        $user->save();
     }
 
     /**

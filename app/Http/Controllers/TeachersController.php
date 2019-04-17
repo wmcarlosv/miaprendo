@@ -9,11 +9,15 @@ class TeachersController extends Controller
 {
     public function index()
     {
-    	print "hola";
+    	$teachers = User::where('role','=','profesor')->get();
+    	if(!isset($teachers) and empty($teachers)){
+    		$teachers = [];
+    	}
+    	return view('admin.teachers.index',['teachers' => $teachers]);
     }
 
     public function create()
     {
-
+    	return view('admin.teachers.new');
     }
 }
