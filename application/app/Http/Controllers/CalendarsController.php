@@ -147,4 +147,15 @@ class CalendarsController extends Controller
         return view('admin.calendars.administrator',['calendars' => $calendars]);
 
     }
+
+    public function my_lessons(){
+
+        $calendars = Calendar::where('student_id','=',Auth::user()->id)->get();
+
+        if(!isset($calendars) and empty($calendars)){
+            $calendars = [];
+        }
+
+        return view('admin.calendars.student',['calendars' => $calendars]);
+    }
 }

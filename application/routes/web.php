@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::get('list-calendars','CalendarsController@list_calendars')->name('list.calendars');
 
+	Route::get('my-lessons','CalendarsController@my_lessons')->name('my.lessons');
+
 	Route::resource('credits','CreditsController');
 	Route::resource('users','UsersController');
 
