@@ -19,10 +19,10 @@ class CreateCalendarsTable extends Migration
             $table->date('lesson_date')->nullable(false);
             $table->time('time_from')->nullable(false);
             $table->time('time_to')->nullable(false);
-            $table->string('document',100)->nullable(false);
+            $table->string('document',100)->nullable();
             $table->bigInteger('lesson_id')->nullable();
             $table->bigInteger('student_id')->nullable();
-            $table->boolean('status')->nullable(false)->default(false); 
+            $table->enum('status',['revision','aprobado','rechazado'])->nullable(false)->default('revision');
             $table->float('lesson_price')->nullable(false)->default(0.0);           
             $table->timestamps();
 
