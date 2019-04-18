@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Calendar;
 use App\Lesson;
+use App\User;
 use Auth;
 
 class CalendarsController extends Controller
@@ -16,7 +17,13 @@ class CalendarsController extends Controller
      */
     public function index()
     {
-        $calendars = Calendar::all();
+        $calendars = Calendar::where('teacher_id','=',Auth::user()->id)->get();
+
+        if(!isset($calendars) and empty($calendars)){
+
+            $calendars = [];
+
+        }
 
         return view('admin.calendars.index',['calendars' => $calendars]);
     }
@@ -71,7 +78,9 @@ class CalendarsController extends Controller
      */
     public function show($id)
     {
-        //
+        $calendar = Calendar::findorfail($id);
+
+        return view('admin.calendars.show',['calendar' => $calendar]);
     }
 
     /**
@@ -82,9 +91,13 @@ class CalendarsController extends Controller
      */
     public function edit($id)
     {
-        $Calendar = Calendar::findorfail($id);
+        $calendar = Calendar::findorfail($id);
+        $students = User::where('role','=','estudiante')->get();
+        if(!isset($students) and empty($students)){
+            $students = [];
+        }
 
-        return view('admin.calendars.edit',['Calendar' => $Calendar]);
+        return view('admin.calendars.edit',['calendar' => $calendar, 'students' => $students]);
     }
 
     /**
@@ -97,25 +110,18 @@ class CalendarsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'lesson_date' => 'required',
-            'time_from' => 'required',
-            'time_to' => 'required',
-            'lesson_id' => 'required',
-            'lesson_price' => 'required'
+            'student_id' => 'required',
+            'status' => 'required'
         ]);
 
         $calendar = Calendar::findorfail($id);
-        $calendar->teacher_id = Auth::user()->id;
-        $calendar->lesson_date = date('Y-m-d',strtotime($request->input('lesson_date')));
-        $calendar->time_from = $request->input('time_from');
-        $calendar->time_to = $request->input('time_to');
-        $calendar->lesson_id = $request->input('lesson_id');
-        $calendar->lesson_price = $request->input('lesson_price');
+        $calendar->student_id = $request->input('student_id');
+        $calendar->status = $request->input('status');
         $calendar->save();
 
         flash("Calendario Actualizado con Exito!!")->success();
 
-        return redirect()->route('calendars.index');
+        return redirect()->route('calendars.administrator');
     }
 
     /**
@@ -132,5 +138,13 @@ class CalendarsController extends Controller
         flash("Calendario Eliminado con Exito!!")->success();
 
         return redirect()->route('calendars.index');
+    }
+
+    public function list_calendars(){
+
+        $calendars = Calendar::all();
+
+        return view('admin.calendars.administrator',['calendars' => $calendars]);
+
     }
 }

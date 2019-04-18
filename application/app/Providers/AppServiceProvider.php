@@ -63,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
                         ],
                         [
                             'text' => 'Calendario',
-                            'route' => 'calendars.index',
+                            'route' => 'list.calendars',
                             'icon' => 'calendar'
                         ],
                         [

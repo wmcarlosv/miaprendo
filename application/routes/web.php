@@ -23,10 +23,13 @@ Route::group(['prefix' => 'admin'], function(){
 
 	Route::resource('lessons','LessonsController');
 	Route::resource('calendars','CalendarsController');
+
+	Route::get('list-calendars','CalendarsController@list_calendars')->name('list.calendars');
+
 	Route::resource('credits','CreditsController');
 	Route::resource('users','UsersController');
 
-	Route::put('/users/change-password','UsersController@change_password')->name('change_password');
+	Route::put('/change-password','UsersController@change_password')->name('change_password');
 
 	Route::get('/profile','UsersController@profile')->name('users.profile');
 
