@@ -7,6 +7,7 @@ use App\Calendar;
 use App\Lesson;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CalendarsController extends Controller
 {
@@ -157,5 +158,26 @@ class CalendarsController extends Controller
         }
 
         return view('admin.calendars.student',['calendars' => $calendars]);
+    }
+
+    public function end_lesson(Request $request, $id = NULL){
+
+        $calendar = Calendar::findorfail($id);
+
+        if($request->hasFile('document')){
+
+            $calendar->document = $request->document->store('documents');
+        }else{
+            $calendar->document = NULL;
+
+        }
+
+        $calendar->status = 'finalizado';
+
+        $calendar->update();
+
+        flash("Documento Subido con Exito!! la clase se marco como finalziada!!")->success();
+
+        return redirect()->route('calendars.index');
     }
 }

@@ -25,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $calendars = Calendar::all();
+        $calendars = Calendar::all(); 
+        
         return view('home',['calendars' => $calendars]);
     }
 }

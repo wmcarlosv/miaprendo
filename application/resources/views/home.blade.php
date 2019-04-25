@@ -123,7 +123,7 @@
       	@foreach($calendars as $calendar)
       		@if(Auth::user()->role == 'administrador')
       		{ 
-      			title: '{{ $calendar->lesson->title }}',
+      			title: '{{ $calendar->lesson->title }} ({{ $calendar->status }})',
       			url : '{{ route("calendars.edit",["id" => $calendar->id]) }}',
       			start: '{{ $calendar->lesson_date }}'
       		},
@@ -132,7 +132,7 @@
       		@if(Auth::user()->role == 'profesor')
       			@if($calendar->teacher_id == Auth::user()->id)
       				{ 
-		      			title: '{{ $calendar->lesson->title }}',
+		      			title: '{{ $calendar->lesson->title }} ({{ $calendar->status }})',
 		      			url : '{{ route("calendars.show",["id" => $calendar->id]) }}',
 		      			start: '{{ $calendar->lesson_date }}'
 		      		},
@@ -142,7 +142,7 @@
       		@if(Auth::user()->role == 'estudiante')
       			@if($calendar->student_id == Auth::user()->id)
       				{ 
-		      			title: '{{ $calendar->lesson->title }}',
+		      			title: '{{ $calendar->lesson->title }} ({{ $calendar->status }})',
 		      			start: '{{ $calendar->lesson_date }}'
 		      		},
       			@endif

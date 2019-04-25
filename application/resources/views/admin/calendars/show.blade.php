@@ -53,6 +53,7 @@
             </div>
 
             @if(isset($calendar->student_id) and !empty($calendar->student_id))
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>Estudiante Asignado</h2>
@@ -68,9 +69,21 @@
                                 <td>{{ $calendar->student->email }}</td>
                             </tr>
                         </table>
+                        <hr />
+                        @if(!isset($calendar->document) and empty($calendar->document))
+                            {!! Form::open(['route' => ['end.lesson',$calendar->id], 'method' => 'PUT', 'files' => true ]) !!}
+                            <div class="form-group">
+                                <label for="document">Documento: </label>
+                                <input class="form-control" type="file" name="document" id="document" />
+                            </div>
+                            <button type="submit" class="btn btn-success">Cargar Documento</button>
+                            {!! Form::close() !!}
+                        @else
+                        <a class="btn btn-success" href="{{ asset('application/storage/app/'.$calendar->document) }}" target="_blank"><i class="fa fa-download"></i> Descargar Archivo</a>
+                        @endif
                     </div>
                 </div>
-                
+
             @endif
 
             <a href="{{ route('calendars.index') }}" class="btn btn-warning">Volver</a>
