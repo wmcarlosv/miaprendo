@@ -67,7 +67,7 @@ class AppServiceProvider extends ServiceProvider
                             'icon' => 'calendar'
                         ],
                         [
-                            'text' => 'Creditos',
+                            'text' => 'Horas',
                             'route' => 'credits.index',
                             'icon' => 'money'
                         ]

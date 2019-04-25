@@ -47,7 +47,7 @@
             </div>
 
             <div class="form-group">
-                <label for="">Precio de la Clase: </label>
+                <label for="">Cantidad de Horas: </label>
                 <input type="text" readonly="readonly" class="form-control" value="{{ $calendar->lesson_price }}" />
             </div>
 

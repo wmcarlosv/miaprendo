@@ -121,7 +121,7 @@ class CalendarsController extends Controller
 
         flash("Calendario Actualizado con Exito!!")->success();
 
-        return redirect()->route('calendars.administrator');
+        return redirect()->route('list.calendars');
     }
 
     /**

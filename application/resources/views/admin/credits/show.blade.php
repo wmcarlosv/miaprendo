@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group">
-                <label for="">Monto: </label>
+                <label for="">Cantidad: </label>
                 <input type="text" readonly="readonly" class="form-control" value="{{ $credit->amount }}" />
             </div>
 

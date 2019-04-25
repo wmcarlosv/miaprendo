@@ -52,7 +52,7 @@
             </div>
 
             <div class="form-group">
-                <label for="lesson_price">Precio: </label>
+                <label for="lesson_price">Horas: </label>
                 <input type="number" class="form-control" name="lesson_price" id="lesson_price">
             </div>
 

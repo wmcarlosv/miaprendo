@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Nuevo Credito')
+@section('title', 'Nuevas Horas')
 
 @section('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
     <div class="panel panel-default">
     	<div class="panel-heading">
-    		<h2>Nuevo Credito</h2>
+    		<h2>Nuevas Horas</h2>
     	</div>
     	<div class="panel-body">
     		{!! Form::open(['route' => 'credits.store', 'method' => 'POST', 'autocomplete' => 'off']) !!}
@@ -36,7 +36,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="amount">Monto: </label>
+                <label for="amount">Cantidad: </label>
                 <input type="text" class="form-control" name="amount" id="amount">
             </div>
 

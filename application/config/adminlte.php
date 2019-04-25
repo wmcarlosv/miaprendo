@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Mi</b>Aprendo',
+    'logo' => '<img src=\'http://localhost/miaprendo/image/aprendo_logo.png\'>',
 
-    'logo_mini' => '<b>M</b>AD',
+    'logo_mini' => '<img src=\'http://localhost/miaprendo/image/aprendo_mini_icon.png\'>',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => 'red',
 
     /*
     |--------------------------------------------------------------------------

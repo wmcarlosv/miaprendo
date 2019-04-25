@@ -6,17 +6,17 @@
 	@include('flash::message')
     <div class="panel panel-default">
     	<div class="panel-heading">
-    		<h2>Creditos</h2>
+    		<h2>Horas</h2>
     	</div>
     	<div class="panel-body">
-    		<a href="{{ route('credits.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Agregar Credito</a>
+    		<a href="{{ route('credits.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Agregar Horas</a>
     		<br />
     		<br />
     		<table class="table" id="credit-table">
     			<thead>
     				<th>ID</th>
     				<th>Estudiante</th>
-    				<th>Monto</th>
+    				<th>Cantidad</th>
                     <th>Fecha</th>
     				<th>-</th>
     			</thead>
