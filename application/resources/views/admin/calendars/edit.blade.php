@@ -70,6 +70,11 @@
                 </select>
             </div>
 
+            @if(isset($calendar->document) and !empty($calendar->document))
+                <a class="btn btn-success" href="{{ asset('application/storage/app/'.$calendar->document) }}" target="_blank"><i class="fa fa-download"></i> Descargar Archivo</a>
+                <br />
+                <br />
+            @endif
             <button type="submit" class="btn btn-success">Guardar</button>
             <a href="{{ route('home') }}" class="btn btn-warning">Volver</a>
 
