@@ -50,12 +50,6 @@
                     @endforeach
                 </select>
             </div>
-
-            <div class="form-group">
-                <label for="lesson_price">Horas: </label>
-                <input type="number" class="form-control" name="lesson_price" id="lesson_price">
-            </div>
-
             <button type="sumit" class="btn btn-success">Guardar</button>
             <a href="{{ route('calendars.index') }}" class="btn btn-danger">Cancelar</a>
 

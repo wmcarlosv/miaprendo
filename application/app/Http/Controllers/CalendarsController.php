@@ -53,8 +53,7 @@ class CalendarsController extends Controller
             'lesson_date' => 'required',
             'time_from' => 'required',
             'time_to' => 'required',
-            'lesson_id' => 'required',
-            'lesson_price' => 'required'
+            'lesson_id' => 'required'
         ]);
 
         $calendar = new Calendar();
@@ -63,7 +62,6 @@ class CalendarsController extends Controller
         $calendar->time_from = $request->input('time_from');
         $calendar->time_to = $request->input('time_to');
         $calendar->lesson_id = $request->input('lesson_id');
-        $calendar->lesson_price = $request->input('lesson_price');
         $calendar->save();
 
         flash("Calendario Registrada con Exito!!")->success();
@@ -111,12 +109,10 @@ class CalendarsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'student_id' => 'required',
             'status' => 'required'
         ]);
 
         $calendar = Calendar::findorfail($id);
-        $calendar->student_id = $request->input('student_id');
         $calendar->status = $request->input('status');
         $calendar->save();
 
@@ -179,5 +175,28 @@ class CalendarsController extends Controller
         flash("Documento Subido con Exito!! la clase se marco como finalziada!!")->success();
 
         return redirect()->route('calendars.index');
+    }
+
+    public function show_student($id){
+        $calendar = Calendar::findorfail($id);
+        return view('admin.calendars.show_student',['calendar' => $calendar]);
+    }
+
+    public function add_student(Request $request, $id){
+
+        $request->validate([
+            'lesson_price' => 'required'
+        ]);
+
+        $calendar = Calendar::findorfail($id);
+
+        $calendar->student_id = Auth::user()->id;
+        $calendar->lesson_price = $request->input('lesson_price');
+
+        $calendar->update();
+
+        flash("Clase Apartada con Exito, Debe esperar aprobacion del Administrador!!")->success();
+
+        return redirect()->route('my.lessons');
     }
 }

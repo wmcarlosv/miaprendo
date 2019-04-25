@@ -19,7 +19,7 @@
     				<th>Hora Desde</th>
                     <th>Hora Hasta</th>
                     <th>Clase</th>
-                    <th>Precio de la Clase</th>
+                    <th>Horas</th>
                     <th>Estatus</th>
     				<th>-</th>
     			</thead>

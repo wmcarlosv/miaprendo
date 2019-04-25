@@ -29,11 +29,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 	Route::put('end-lesson/{id}','CalendarsController@end_lesson')->name('end.lesson');
 
 	Route::get('my-lessons','CalendarsController@my_lessons')->name('my.lessons');
+	Route::get('show-student/{id}','CalendarsController@show_student')->name('show_student');
+	Route::put('add-student/{id}','CalendarsController@add_student')->name('add_student');
 
 	Route::resource('credits','CreditsController');
 	Route::resource('users','UsersController');
 
-	Route::put('/change-password','UsersController@change_password')->name('change_password');
+	Route::put('change-password/{id}','UsersController@change_password')->name('change_password');
 
 	Route::get('/profile','UsersController@profile')->name('users.profile');
 

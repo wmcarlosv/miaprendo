@@ -52,17 +52,12 @@
             </div>
 
             <div class="form-group">
-                <label for="student_id">Estudiante: </label>
-                <select class="form-control super-select" style="width: 100% !important;" name="student_id" id="student_id">
-                    <option>-</option>
-                    @foreach($students as $student)
-                        @if($student->id == $calendar->student_id)
-                            <option value="{{ $student->id }}" selected="selected">{{ $student->name }}</option>
-                        @else
-                            <option value="{{ $student->id }}">{{ $student->name }}</option>
-                        @endif
-                    @endforeach()
-                </select>
+                <label for="">Estudiante: </label>
+                @if(isset($calendar->student_id) and !empty($calendar->student_id))
+                    <input type="text" readonly="readonly" class="form-control" value="{{ $calendar->student->name }}" />
+                @else
+                    <input type="text" readonly="readonly" class="form-control" value="Sin Asignar" />
+                @endif
             </div>
 
             <div class="form-group">
@@ -71,6 +66,7 @@
                     <option value="revision" @if($calendar->status == 'revision') selected @endif>Revision</option>
                     <option value="aprobado" @if($calendar->status == 'aprobado') selected @endif>Aprobado</option>
                     <option value="rechazado" @if($calendar->status == 'rechazado') selected @endif>Rechazado</option>
+                    <option value="finalizado" @if($calendar->status == 'finalizado') selected @endif>Finalizado</option>
                 </select>
             </div>
 

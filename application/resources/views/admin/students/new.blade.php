@@ -34,6 +34,10 @@
                 <label for="birthdate">Fecha de Nacimiento: </label>
                 <input type="date" class="form-control" name="birthdate" id="birthdate" />
             </div>
+            <div class="form-group">
+                <label for="address">Direcci&oacute;n: </label>
+                <textarea class="form-control" name="address" id="address"></textarea>
+            </div>
             <div class="input-group">
                 <input type="text" class="form-control" readonly="readonly" name="password" id="password" placeholder="Contraseña">
                 <div class="input-group-btn">

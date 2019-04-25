@@ -34,6 +34,10 @@
                 <label for="birthdate">Fecha de Nacimiento: </label>
                 <input type="date" class="form-control" value="{{ $student->birthdate }}" name="birthdate" id="birthdate" />
             </div>
+            <div class="form-group">
+                <label for="address">Direcci&oacute;n: </label>
+                <textarea class="form-control" name="address" id="address">{{ $student->address }}</textarea>
+            </div>
             <input type="hidden" name="role" value="estudiante">
             <button type="sumit" class="btn btn-success">Guardar</button>
             <a href="{{ route('students.index') }}" class="btn btn-danger">Cancelar</a>

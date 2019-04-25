@@ -19,7 +19,7 @@
 		        <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
 		        <div class="info-box-content">
 		          <span class="info-box-text">Estudiantes</span>
-		          <span class="info-box-number">0</span>
+		          <span class="info-box-number">{{ $sc }}</span>
 		        </div>
 		    </div>
 	    </div>
@@ -28,7 +28,7 @@
 		        <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
 		        <div class="info-box-content">
 		          <span class="info-box-text">Profesores</span>
-		          <span class="info-box-number">0</span>
+		          <span class="info-box-number">{{ $tc }}</span>
 		        </div>
 		    </div>
 	    </div>
@@ -140,12 +140,11 @@
       		@endif
 
       		@if(Auth::user()->role == 'estudiante')
-      			@if($calendar->student_id == Auth::user()->id)
-      				{ 
-		      			title: '{{ $calendar->lesson->title }} ({{ $calendar->status }})',
-		      			start: '{{ $calendar->lesson_date }}'
-		      		},
-      			@endif
+  				{ 
+	      			title: '{{ $calendar->lesson->title }} ({{ $calendar->status }})',
+	      			url : '{{ route("show_student",["id" => $calendar->id]) }}',
+	      			start: '{{ $calendar->lesson_date }}'
+	      		},
       		@endif
       	@endforeach
 

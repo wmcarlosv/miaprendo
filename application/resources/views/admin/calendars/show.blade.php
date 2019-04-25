@@ -68,6 +68,10 @@
                                 <td>Email: </td>
                                 <td>{{ $calendar->student->email }}</td>
                             </tr>
+                            <tr>
+                                <td>Direcci&oacute;n: </td>
+                                <td>{{ $calendar->student->address }}</td>
+                            </tr>
                         </table>
                         <hr />
                         @if(!isset($calendar->document) and empty($calendar->document))

@@ -48,6 +48,7 @@ class UsersController extends Controller
         $user->birthdate = date('Y-m-d',strtotime($request->input('birthdate')));
         $user->password = bcrypt($request->input('password'));
         $user->role = $request->input('role');
+        $user->address = $request->input('address');
         $user->save();
 
         if($request->input('role') == 'profesor'){
@@ -110,6 +111,7 @@ class UsersController extends Controller
         $user->email = $request->input('email');
         $user->birthdate = date('Y-m-d',strtotime($request->input('birthdate')));
         $user->role = $request->input('role');
+        $user->address = $request->input('address');
         $user->save();
 
         if($request->input('role') == 'profesor'){
@@ -163,6 +165,6 @@ class UsersController extends Controller
 
         flash("Contraseña Actualizada con Exito!!")->success();
 
-        return redirect()->route('home');
+        return redirect()->route('users.profile');
     }
 }

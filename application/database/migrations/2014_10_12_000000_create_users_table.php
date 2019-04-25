@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->enum('role',['administrador','profesor','estudiante'])->nullable();
             $table->date('birthdate')->nullable();
             $table->float('credit')->nullable(false)->default(0.0);
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }

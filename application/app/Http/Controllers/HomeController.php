@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Calendar;
 use Auth;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $calendars = Calendar::all(); 
-        
-        return view('home',['calendars' => $calendars]);
+        $calendars = Calendar::all();
+
+        $students = User::where('role','=','estudiante')->get();
+        if(!isset($students) and empty($students)){
+            $students = [];
+        }
+        $sc = $students->count();
+
+        $teachers = User::where('role','=','profesor')->get();
+        if(!isset($teachers) and empty($teachers)){
+            $teachers = [];
+        }
+        $tc = $teachers->count();
+
+        return view('home',['calendars' => $calendars,'sc' => $sc, 'tc' => $tc]);
     }
 }

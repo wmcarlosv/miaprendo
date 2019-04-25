@@ -18,6 +18,7 @@
     				<th>Nombre</th>
     				<th>Correo</th>
     				<th>Fecha Nacimiento</th>
+                    <th>Direcci&oacute;n</th>
     				<th>-</th>
     			</thead>
     			<tbody>
@@ -27,6 +28,7 @@
     					<td>{{ $student->name }}</td>
     					<td>{{ $student->email }}</td>
     					<td>{{ date('d-m-Y',strtotime($student->birthdate)) }}</td>
+                        <td>{{ $student->address }}</td>
     					<td>
     						<a class="btn btn-info" href="{{ route('users.edit',['id' => $student->id]) }}"><i class="fa fa-pencil"></i></a>
     						{!! Form::open(['route' => ['users.destroy',$student->id], 'method' => 'DELETE', 'style' => 'display:inline;']) !!}
