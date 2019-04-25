@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<img src=\'http://localhost/miaprendo/image/aprendo_logo.png\'>',
+    'logo' => '<img src=\'http://miaprendo.webaprendo.cl/image/aprendo_logo.png\'>',
 
-    'logo_mini' => '<img src=\'http://localhost/miaprendo/image/aprendo_mini_icon.png\'>',
+    'logo_mini' => '<img src=\'http://miaprendo.webaprendo.cl/image/aprendo_mini_icon.png\'>',
 
     /*
     |--------------------------------------------------------------------------
