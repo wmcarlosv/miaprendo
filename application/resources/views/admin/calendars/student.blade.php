@@ -18,6 +18,8 @@
                     <th>Hora Hasta</th>
                     <th>Clase</th>
                     <th>Horas de la Clase</th>
+                    <th>Estatus</th>
+                    <th>-</th>
     			</thead>
     			<tbody>
     				@foreach($calendars as $calendar)
@@ -29,6 +31,8 @@
                         <td>{{ $calendar->time_to }}</td>
                         <td>{{ $calendar->lesson->title }}</td>
                         <td>{{ $calendar->lesson_price }}</td>
+                        <td>{{ $calendar->status }}</td>
+                        <td><a class="btn btn-info" href="{{ route('show_student',['id' => $calendar->id]) }}"><i class="fa fa-eye"></i> Ver</a></td>
     				</tr>
     				@endforeach
     			</tbody>

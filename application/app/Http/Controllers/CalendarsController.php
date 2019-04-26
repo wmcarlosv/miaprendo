@@ -114,6 +114,15 @@ class CalendarsController extends Controller
 
         $calendar = Calendar::findorfail($id);
         $calendar->status = $request->input('status');
+
+        if(Auth::user()->role == 'administrador' && $request->input('status') == 'aprobado'){
+
+            $user = User::findorfail($request->input('student_asigned_id'));
+            $hours = ($user->credit - $calendar->lesson_price);
+            $user->credit = $hours;
+            $user->save();
+        }
+
         $calendar->save();
 
         flash("Calendario Actualizado con Exito!!")->success();
@@ -188,14 +197,15 @@ class CalendarsController extends Controller
             'lesson_price' => 'required'
         ]);
 
-        $calendar = Calendar::findorfail($id);
-
-        $calendar->student_id = Auth::user()->id;
-        $calendar->lesson_price = $request->input('lesson_price');
-
-        $calendar->update();
-
-        flash("Clase Apartada con Exito, Debe esperar aprobacion del Administrador!!")->success();
+        if(Auth::user()->credit >= $request->input('lesson_price')){
+            $calendar = Calendar::findorfail($id);
+            $calendar->student_id = Auth::user()->id;
+            $calendar->lesson_price = $request->input('lesson_price');
+            $calendar->update();
+            flash("Clase Apartada con Exito, Debe esperar aprobacion del Administrador!!")->success();
+        }else{
+            flash("La cantidad de horas solicitadas supera las horas que tiene disponible!!")->error();
+        }
 
         return redirect()->route('my.lessons');
     }

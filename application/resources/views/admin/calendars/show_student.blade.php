@@ -47,7 +47,7 @@
                 <input type="text" readonly="readonly" class="form-control" value="{{ $calendar->status }}" />
             </div>
 
-
+            @if($calendar->status == 'revision')
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2>Cargar las horas para esta Clase</h2>
@@ -62,8 +62,16 @@
                     {!! Form::close() !!}
                 </div>
             </div>
+            @endif
 
-            <a href="{{ route('calendars.index') }}" class="btn btn-warning">Volver</a>
+            @if($calendar->status == 'aprobado' || $calendar->status == 'finalizado')
+                <div class="form-group">
+                <label for="">Horas: </label>
+                <input type="text" readonly="readonly" class="form-control" value="{{ $calendar->lesson_price }}" />
+            </div>
+            @endif
+
+            <a href="{{ route('my.lessons') }}" class="btn btn-warning">Volver</a>
 
     	</div>
     </div>

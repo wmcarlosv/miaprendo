@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Nuevo Profesor')
+@section('title', 'Nuevo Administrador')
 
 @section('content')
     <!--Show Errors-->
@@ -16,7 +16,7 @@
     <!--End Show Errors-->
     <div class="panel panel-default">
     	<div class="panel-heading">
-    		<h2>Nuevo Profesor</h2>
+    		<h2>Nuevo Administrador</h2>
     	</div>
     	<div class="panel-body">
     		{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'autocomplete' => 'off']) !!}
@@ -44,10 +44,10 @@
                   </button>
                 </div>
             </div>
-            <input type="hidden" name="role" value="profesor">
+            <input type="hidden" name="role" value="administrador">
             <br />
             <button type="sumit" class="btn btn-success">Guardar</button>
-            <a href="{{ route('teachers.index') }}" class="btn btn-danger">Cancelar</a>
+            <a href="{{ route('administrators.index') }}" class="btn btn-danger">Cancelar</a>
             {!! Form::close() !!}
     	</div>
     </div>

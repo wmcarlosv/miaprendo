@@ -47,6 +47,11 @@ class AppServiceProvider extends ServiceProvider
                             'icon' => 'user-md'
                         ],
                         [
+                            'text' => 'Administradores',
+                            'route' => 'administrators.index',
+                            'icon' => 'user-circle'
+                        ],
+                        [
                             'text' => 'Profesores',
                             'route' => 'teachers.index',
                             'icon' => 'user'

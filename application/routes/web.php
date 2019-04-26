@@ -45,4 +45,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 	Route::get('/students','StudentsController@index')->name('students.index');
 	Route::get('/students/new','StudentsController@create')->name('students.create');
 
+	Route::get('/administrators','AdministratorsController@index')->name('administrators.index');
+	Route::get('/administrators/new','AdministratorsController@create')->name('administrators.create');
+
 });

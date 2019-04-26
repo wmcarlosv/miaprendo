@@ -60,6 +60,11 @@ class UsersController extends Controller
             flash('Estudiante Registrado con Exito')->success();
             return redirect()->route('students.index');
         }
+
+        if($request->input('role') == 'administrador'){
+            flash('Administrador Registrado con Exito')->success();
+            return redirect()->route('administrators.index');
+        }
     }
 
     /**
@@ -89,6 +94,10 @@ class UsersController extends Controller
 
         if($user->role == "estudiante"){
             return view('admin.students.edit',['student' => $user]);
+        }
+
+        if($user->role == "administrador"){
+            return view('admin.administrators.edit',['administrator' => $user]);
         }
     }
 
@@ -123,6 +132,11 @@ class UsersController extends Controller
             flash('Estudiante Actualizado con Exito')->success();
             return redirect()->route('students.index');
         }
+
+        if($request->input('role') == 'administrador'){
+            flash('Administrador Actualizado con Exito')->success();
+            return redirect()->route('administrators.index');
+        }
     }
 
     /**
@@ -145,6 +159,11 @@ class UsersController extends Controller
         if($role == "estudiante"){
             flash("Estudiante Eliminado con Exito!!")->success();
             return redirect()->route("students.index");
+        }
+
+        if($role == "administrador"){
+            flash("Administrador Eliminado con Exito!!")->success();
+            return redirect()->route("administrators.index");
         }
     }
 

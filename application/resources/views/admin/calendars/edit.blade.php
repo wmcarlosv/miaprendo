@@ -58,6 +58,7 @@
                 @else
                     <input type="text" readonly="readonly" class="form-control" value="Sin Asignar" />
                 @endif
+                <input type="hidden" name="student_asigned_id" value="{{ $calendar->student_id }}">
             </div>
 
             <div class="form-group">
