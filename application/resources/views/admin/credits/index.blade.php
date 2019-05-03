@@ -26,7 +26,7 @@
     					<td>{{ $credit->id }}</td>
     					<td>
                             @if(isset($credit->user->name) and !empty($credit->user->name))
-                                $credit->user->name
+                                {{ $credit->user->name }}
                             @else
                                 Sin Nombre
                             @endif               
