@@ -101,7 +101,10 @@
         $('input.date-picker').datepicker({
             dateFormat : 'dd-mm-yy'
         });
-        $('input.timepicker').timepicker({});
+        $('input.timepicker').timepicker({
+            timeFormat: 'h:mm p',
+            defaultTime: '24'
+        });
     });
 </script>
 @stop

@@ -78,8 +78,8 @@ class CalendarsController extends Controller
             $calendar = new Calendar();
             $calendar->teacher_id = $request->input('teacher_id');
             $calendar->lesson_date = date('Y-m-d',strtotime($request->input('lesson_date')));
-            $calendar->time_from = $request->input('time_from');
-            $calendar->time_to = $request->input('time_to');
+            $calendar->time_from = date('H:m:s',strtotime($request->input('time_from')));
+            $calendar->time_to = date('H:m:s',strtotime($request->input('time_to')));
             $calendar->lesson_id = $request->input('lesson_id');
             $calendar->student_id = $request->input('student_id');
             $calendar->lesson_price = $request->input('lesson_price');
