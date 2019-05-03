@@ -2,6 +2,11 @@
 
 @section('title', 'Editar Administrador')
 
+@section('css')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+@stop
+
 @section('content')
     <!--Show Errors-->
     @if ($errors->any())
@@ -30,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label for="birthdate">Fecha de Nacimiento: </label>
-                <input type="date" class="form-control" value="{{ $administrator->birthdate }}" name="birthdate" id="birthdate" />
+                <input type="text" readonly="readonly" class="form-control date-picker" value="{{ date('d-m-Y',strtotime($administrator->birthdate)) }}" name="birthdate" id="birthdate" />
             </div>
             <div class="form-group">
                 <label for="address">Direcci&oacute;n: </label>
@@ -42,4 +47,14 @@
             {!! Form::close() !!}
     	</div>
     </div>
+@stop
+@section('js')
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('input.date-picker').datepicker({
+            dateFormat : 'dd-mm-yy'
+        });
+    });
+</script>
 @stop

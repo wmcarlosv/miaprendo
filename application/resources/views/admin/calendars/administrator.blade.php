@@ -9,6 +9,9 @@
     		<h2>Disponibilidad</h2>
     	</div>
     	<div class="panel-body">
+            <a href="{{ route('calendars.create') }}" class="btn btn-success"><i class="fa fa-plus"> </i>Nuevo Calendario</a>
+            <br />
+            <br />
     		<table class="table" id="calendar-table">
     			<thead>
     				<th>ID</th>

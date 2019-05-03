@@ -107,6 +107,7 @@
 @stop
 @section('js')
 <script src="{{ asset('plugins/fullcalendar-4.1.0/packages/core/main.js') }}"></script>
+<script src="{{ asset('plugins/fullcalendar-4.1.0/packages/core/locale-all.js') }}"></script>
 <script src="{{ asset('plugins/fullcalendar-4.1.0/packages/interaction/main.js') }}"></script>
 <script src="{{ asset('plugins/fullcalendar-4.1.0/packages/daygrid/main.js') }}"></script>
 <script type="text/javascript">
@@ -115,9 +116,14 @@
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'interaction', 'dayGrid' ],
-      defaultDate: '2019-04-12',
       editable: true,
       eventLimit: true,
+      locale : 'es',
+      header : {
+      	left : 'prev, next',
+      	center : 'title',
+      	right : 'dayGridDay,dayGridWeek,dayGridMonth'
+      },
       events : [
 
       	@foreach($calendars as $calendar)

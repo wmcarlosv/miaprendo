@@ -3,10 +3,14 @@
 @section('title', 'Nueva Disponibilidad')
 
 @section('css')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 @stop
 
 @section('content')
+
+    @include('flash::message')
 
     <!--Show Errors-->
     @if ($errors->any())
@@ -28,8 +32,26 @@
     		{!! Form::open(['route' => 'calendars.store', 'method' => 'POST', 'autocomplete' => 'off']) !!}
 
             <div class="form-group">
+                <label for="teacher_id">Profesor: </label>
+                <select class="form-control super-select" style="width: 100% !important;" name="teacher_id" id="teacher_id">
+                    @foreach($teachers as $teacher)
+                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="student_id">Estudiante: </label>
+                <select class="form-control super-select" style="width: 100% !important;" name="student_id" id="student_id">
+                    @foreach($students as $students)
+                        <option value="{{ $students->id }}">{{ $students->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="lesson_date">Fecha: </label>
-                <input type="date" class="form-control" name="lesson_date" id="lesson_date">
+                <input type="text" class="form-control date-picker" readonly="readonly" name="lesson_date" id="lesson_date">
             </div>
 
             <div class="form-group">
@@ -43,6 +65,11 @@
             </div>
 
             <div class="form-group">
+                <label for="lesson_price">Cantidad de Horas: </label>
+                <input type="text" class="form-control" name="lesson_price" id="lesson_price">
+            </div>
+
+            <div class="form-group">
                 <label for="lesson_id">Clase: </label>
                 <select class="form-control super-select" style="width: 100% !important;" name="lesson_id" id="lesson_id">
                     @foreach($lessons as $lesson)
@@ -50,6 +77,7 @@
                     @endforeach
                 </select>
             </div>
+
             <button type="sumit" class="btn btn-success">Guardar</button>
             <a href="{{ route('calendars.index') }}" class="btn btn-danger">Cancelar</a>
 
@@ -60,9 +88,13 @@
 
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.super-select').select2();
+        $('input.date-picker').datepicker({
+            dateFormat : 'dd-mm-yy'
+        });
     });
 </script>
 @stop

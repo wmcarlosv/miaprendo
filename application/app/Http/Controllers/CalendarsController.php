@@ -37,7 +37,18 @@ class CalendarsController extends Controller
     public function create()
     {
         $lessons = Lesson::all();
-        return view('admin.calendars.new',['lessons' => $lessons]);
+
+        $students = User::where('role','=','estudiante')->get();
+        if(!isset($students) and empty($students)){
+            $students = [];
+        }
+
+        $teachers = User::where('role','=','profesor')->get();
+        if(!isset($teachers) and empty($teachers)){
+            $teachers = [];
+        }
+
+        return view('admin.calendars.new',['lessons' => $lessons, 'students' => $students, 'teachers' => $teachers]);
     }
 
     /**
@@ -51,22 +62,41 @@ class CalendarsController extends Controller
 
         $request->validate([
             'lesson_date' => 'required',
+            'teacher_id' => 'required',
+            'student_id' => 'required',
             'time_from' => 'required',
             'time_to' => 'required',
             'lesson_id' => 'required'
         ]);
 
-        $calendar = new Calendar();
-        $calendar->teacher_id = Auth::user()->id;
-        $calendar->lesson_date = date('Y-m-d',strtotime($request->input('lesson_date')));
-        $calendar->time_from = $request->input('time_from');
-        $calendar->time_to = $request->input('time_to');
-        $calendar->lesson_id = $request->input('lesson_id');
-        $calendar->save();
+        $student = User::findorfail($request->input('student_id'));
 
-        flash("Calendario Registrada con Exito!!")->success();
+        if($student->credit >= $request->input('lesson_price')){
 
-        return redirect()->route('calendars.index');
+            $hours = ($student->credit - $request->input('lesson_price'));
+
+            $calendar = new Calendar();
+            $calendar->teacher_id = $request->input('teacher_id');
+            $calendar->lesson_date = date('Y-m-d',strtotime($request->input('lesson_date')));
+            $calendar->time_from = $request->input('time_from');
+            $calendar->time_to = $request->input('time_to');
+            $calendar->lesson_id = $request->input('lesson_id');
+            $calendar->student_id = $request->input('student_id');
+            $calendar->lesson_price = $request->input('lesson_price');
+            $calendar->status = 'aprobado';
+            $calendar->save();
+
+            //Actualizar credito en estudiante
+            $student->credit = $hours;
+            $student->update();
+
+            flash("Calendario Registrada con Exito!!")->success();
+            return redirect()->route('list.calendars');
+        }else{
+            flash("La cantidad de horas solicitadas supera las horas que tiene disponible!!")->error();
+            return redirect()->route('calendars.create');
+        }   
+
     }
 
     /**

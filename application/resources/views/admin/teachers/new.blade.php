@@ -2,6 +2,11 @@
 
 @section('title', 'Nuevo Profesor')
 
+@section('css')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+@stop
+
 @section('content')
     <!--Show Errors-->
     @if ($errors->any())
@@ -30,13 +35,13 @@
             </div>
             <div class="form-group">
                 <label for="birthdate">Fecha de Nacimiento: </label>
-                <input type="date" class="form-control" name="birthdate" id="birthdate" />
+                <input type="text" readonly="readonly" class="form-control date-picker" name="birthdate" id="birthdate" />
             </div>
             <div class="form-group">
                 <label for="address">Direcci&oacute;n: </label>
                 <textarea class="form-control" name="address" id="address"></textarea>
             </div>
-            <div class="input-group">
+            <div class="input-group" style="z-index: 1 !important;">
                 <input type="text" class="form-control" readonly="readonly" name="password" id="password" placeholder="Contraseña">
                 <div class="input-group-btn">
                   <button class="btn btn-info" id="generate-password" type="button">
@@ -53,6 +58,7 @@
     </div>
 @stop
 @section('js')
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
     function randomPassword(length) {
         var chars = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890";
@@ -69,6 +75,11 @@
             var pass = randomPassword(8);
 
             $("#password").val(pass);
+            
+        });
+
+        $('input.date-picker').datepicker({
+            dateFormat : 'dd-mm-yy'
         });
     });
 </script>
