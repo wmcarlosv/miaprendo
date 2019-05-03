@@ -24,7 +24,13 @@
     				@foreach($credits as $credit)
     				<tr>
     					<td>{{ $credit->id }}</td>
-    					<td>{{ $credit->user->name }}</td>
+    					<td>
+                            @if(isset($credit->user->name) and !empty($credit->user->name))
+                                $credit->user->name
+                            @else
+                                Sin Nombre
+                            @endif               
+                        </td>
     					<td>{{ $credit->amount }}</td>
                         <td>{{ date('d-m-Y H:m:s',strtotime($credit->created_at)) }}</td>
     					<td>
