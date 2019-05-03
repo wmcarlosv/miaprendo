@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 @stop
 
 @section('content')
@@ -56,12 +57,12 @@
 
             <div class="form-group">
                 <label for="time_from">Hora Desde: </label>
-                <input type="time" class="form-control" name="time_from" id="time_from">
+                <input type="text" readonly="readonly" class="form-control timepicker" name="time_from" id="time_from">
             </div>
 
             <div class="form-group">
                 <label for="time_to">Hora Hasta: </label>
-                <input type="time" class="form-control" name="time_to" id="time_to">
+                <input type="text" readonly="readonly" class="form-control timepicker" name="time_to" id="time_to">
             </div>
 
             <div class="form-group">
@@ -89,12 +90,14 @@
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.super-select').select2();
         $('input.date-picker').datepicker({
             dateFormat : 'dd-mm-yy'
         });
+        $('input.timepicker').timepicker({});
     });
 </script>
 @stop
