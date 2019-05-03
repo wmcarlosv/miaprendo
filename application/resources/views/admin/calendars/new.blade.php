@@ -67,7 +67,11 @@
 
             <div class="form-group">
                 <label for="lesson_price">Cantidad de Horas: </label>
-                <input type="text" class="form-control" name="lesson_price" id="lesson_price">
+                <select name="lesson_price" class="form-control" id="lesson_price">
+                    @for($i=1;$i < 13; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
             </div>
 
             <div class="form-group">
