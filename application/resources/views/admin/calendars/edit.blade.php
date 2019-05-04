@@ -72,6 +72,10 @@
             </div>
 
             @if(isset($calendar->document) and !empty($calendar->document))
+                <div class="form-group">
+                    <label for="">Observaci&oacute;n: </label>
+                    <textarea readonly="readonly" class="form-control">{{ $calendar->observation }}</textarea>
+                </div>
                 <a class="btn btn-success" href="{{ asset('application/storage/app/'.$calendar->document) }}" target="_blank"><i class="fa fa-download"></i> Descargar Archivo</a>
                 <br />
                 <br />

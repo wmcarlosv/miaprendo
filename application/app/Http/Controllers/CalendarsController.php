@@ -145,14 +145,6 @@ class CalendarsController extends Controller
         $calendar = Calendar::findorfail($id);
         $calendar->status = $request->input('status');
 
-        if(Auth::user()->role == 'administrador' && $request->input('status') == 'aprobado'){
-
-            $user = User::findorfail($request->input('student_asigned_id'));
-            $hours = ($user->credit - $calendar->lesson_price);
-            $user->credit = $hours;
-            $user->save();
-        }
-
         $calendar->save();
 
         flash("Calendario Actualizado con Exito!!")->success();
@@ -206,7 +198,7 @@ class CalendarsController extends Controller
             $calendar->document = NULL;
 
         }
-
+        $calendar->observation = $request->input('observation');
         $calendar->status = 'finalizado';
 
         $calendar->update();

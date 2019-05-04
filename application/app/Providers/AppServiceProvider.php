@@ -57,6 +57,11 @@ class AppServiceProvider extends ServiceProvider
                             'icon' => 'user'
                         ],
                         [
+                            'text' => 'Horas Trabajadas Profesores',
+                            'route' => 'hours',
+                            'icon' => 'clock-o'
+                        ],
+                        [
                             'text' => 'Estudiantes',
                             'route' => 'students.index',
                             'icon' => 'users'

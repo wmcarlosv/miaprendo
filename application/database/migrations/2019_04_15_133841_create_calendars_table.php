@@ -23,7 +23,8 @@ class CreateCalendarsTable extends Migration
             $table->bigInteger('lesson_id')->nullable();
             $table->bigInteger('student_id')->nullable();
             $table->enum('status',['revision','aprobado','rechazado','finalizado'])->nullable(false)->default('revision');
-            $table->float('lesson_price')->nullable(false)->default(0.0);           
+            $table->float('lesson_price')->nullable(false)->default(0.0); 
+            $table->text('observation')->nullable();          
             $table->timestamps();
 
             $table->foreign('teacher_id')->references('id')->on('users')->onUpdate('restrict')->onDelete('restrict');

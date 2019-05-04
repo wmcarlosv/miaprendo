@@ -77,6 +77,10 @@
                         @if(!isset($calendar->document) and empty($calendar->document))
                             {!! Form::open(['route' => ['end.lesson',$calendar->id], 'method' => 'PUT', 'files' => true ]) !!}
                             <div class="form-group">
+                                <label for="observation">Observation: </label>
+                                <textarea class="form-control" type="text" name="observation" id="observation"></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="document">Documento: </label>
                                 <input class="form-control" type="file" name="document" id="document" />
                             </div>
