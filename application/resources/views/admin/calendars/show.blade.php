@@ -94,8 +94,9 @@
 
             @endif
 
-            <a href="{{ route('calendars.index') }}" class="btn btn-warning">Volver</a>
-
+            <a href="{{ route('calendars.index') }}" class="btn btn-warning">Finalizar Clase</a>
+            <a href="{{ route('calendars.edit',[$calendar->id]) }}" class="btn btn-info">Editar Clase</a>
+            <a href="{{ route('home') }}" class="btn btn-danger">Volver</a>
     	</div>
     </div>
 @stop

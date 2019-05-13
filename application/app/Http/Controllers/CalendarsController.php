@@ -157,17 +157,30 @@ class CalendarsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required'
+            'lesson_date' => 'required',
+            'time_from' => 'required',
+            'time_to' => 'required',
+            'lesson_price' => 'required'
         ]);
 
         $calendar = Calendar::findorfail($id);
-        $calendar->status = $request->input('status');
+        $calendar->lesson_date = date('Y-m-d',strtotime($request->input('lesson_date')));
+        $calendar->time_from = date('h:m:s',strtotime($request->input('time_from')));
+        $calendar->time_to = date('h:m:s',strtotime($request->input('time_to')));
+        $calendar->lesson_price = $request->input('lesson_price');
+        if(Auth::user()->role == 'administrador'){
+
+            $calendar->status = $request->input('status');
+        }
 
         $calendar->save();
 
         flash("Calendario Actualizado con Exito!!")->success();
-
-        return redirect()->route('list.calendars');
+        if(Auth::user()->role == 'administrador'){
+            return redirect()->route('list.calendars');
+        }else{
+            return redirect()->route('calendars.index');
+        }
     }
 
     /**
