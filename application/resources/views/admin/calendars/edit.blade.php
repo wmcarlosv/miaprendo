@@ -81,6 +81,7 @@
                 <br />
             @endif
             <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{{ route('repeat.calendar',$calendar->id) }}" class="btn btn-info">Repetir Clase</a>
             <a href="{{ route('home') }}" class="btn btn-warning">Volver</a>
 
             {!! Form::close() !!}

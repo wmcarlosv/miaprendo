@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 
 	Route::get('list-calendars','CalendarsController@list_calendars')->name('list.calendars');
 
+	Route::get('repeat-calendar/{id}','CalendarsController@repeat_calendar')->name('repeat.calendar');
+
 	Route::put('end-lesson/{id}','CalendarsController@end_lesson')->name('end.lesson');
 
 	Route::get('my-lessons','CalendarsController@my_lessons')->name('my.lessons');

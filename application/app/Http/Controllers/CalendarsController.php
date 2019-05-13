@@ -99,6 +99,24 @@ class CalendarsController extends Controller
 
     }
 
+    public function repeat_calendar($id = NULL){
+
+        $calendar = Calendar::findorfail($id);
+
+        $lessons = Lesson::all();
+        $students = User::where('role','=','estudiante')->get();
+        if(!isset($students) and empty($students)){
+            $students = [];
+        }
+
+        $teachers = User::where('role','=','profesor')->get();
+        if(!isset($teachers) and empty($teachers)){
+            $teachers = [];
+        }
+
+        return view('admin.calendars.repeat',['lessons' => $lessons, 'students' => $students, 'teachers' => $teachers, 'calendar' => $calendar]);
+    }
+
     /**
      * Display the specified resource.
      *
